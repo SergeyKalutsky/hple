@@ -14,11 +14,11 @@ async def ping(ctx):
     await ctx.send('testing')
 
 
-async def mute_member(channels, member):
+async def mute_member(channels, member, mute):
     for channel in channels:
         for voice_member in channel.members:
             if member == voice_member:
-                await member.edit(mute=True)
+                await member.edit(mute=mute)
                 return
 
 # @bot.event
@@ -38,6 +38,7 @@ async def mute(ctx, member: discord.Member = None):
         muted_role = discord.utils.get(ctx.guild.roles, name="Muted")
         await member.remove_roles(muted_role)
         await member.send(f"You have been unmuted")
+        await mute_member(ctx.guild.voice_channels, member, False)
     else:
         await ctx.send("Didn't work, try using the command *properly*")
 
@@ -49,7 +50,7 @@ async def mute(ctx, member: discord.Member = None):
         muted_role = discord.utils.get(ctx.guild.roles, name="Muted")
         await member.add_roles(muted_role)
         await member.send(f"You have been muted")
-        await mute_member(ctx.guild.voice_channels, member)
+        await mute_member(ctx.guild.voice_channels, member, True)
     else:
         await ctx.send("Didn't work, try using the command *properly*")
 
