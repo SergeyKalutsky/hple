@@ -25,7 +25,7 @@ async def mute(ctx, member: discord.Member = None):
     if member:
         muted_role = discord.utils.get(ctx.guild.roles, name="Muted")
         await member.remove_roles(muted_role)
-        await member.send(f"You have unmuted {member}")
+        await member.send(f"You have been unmuted")
     else:
         await ctx.send("Didn't work, try using the command *properly*")
 
@@ -36,7 +36,7 @@ async def mute(ctx, member: discord.Member = None):
     if member:
         muted_role = discord.utils.get(ctx.guild.roles, name="Muted")
         await member.add_roles(muted_role)
-        await member.send(f"You have muted {member}")
+        await member.send(f"You have been muted")
     else:
         await ctx.send("Didn't work, try using the command *properly*")
 
