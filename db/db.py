@@ -1,11 +1,13 @@
+from datetime import datetime
 import sqlite3
 
 
-con = sqlite3.connect('db.db')
-cur = con.cursor()
+con = sqlite3.connect('db/db.db')
 
 
-cur.execute("INSERT INTO logs VALUES ('Hello', '21:44 15.01.2022', 'Sergey')")
-
-con.commit()
-con.close()
+def log_message(message, author):
+    date = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+    cur = con.cursor()
+    cur.execute(f"INSERT INTO logs VALUES ('{message}', '{date}', '{author}')")
+    con.commit()
+    

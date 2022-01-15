@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 from discord.utils import get
 from api_token import TOKEN
+from insult_api import is_insult
+from db.db import log_message
 
 
 intents = discord.Intents.default()
@@ -21,14 +23,15 @@ async def mute_member(channels, member, mute):
                 await member.edit(mute=mute)
                 return
 
-# @bot.event
-# async def on_message(message):
-#    if message.author == bot.user:
-#        return
-    # message.author.id <-- user_id
-#    res = await bot.fetch_user(message.author.id)
-#    print(res)
-#    await message.channel.send('Hello!!!!!')
+@bot.event
+async def on_message(message):
+   if message.author == bot.user:
+       return
+   res = is_insult(message.content)
+   print(res)
+   if res == 'Insult':
+       log_message(message.content, message.author)
+   await message.channel.send(res)
 
 
 @bot.command('unmute')
