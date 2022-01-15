@@ -21,15 +21,6 @@ async def mute_member(channels, member, mute):
                 await member.edit(mute=mute)
                 return
 
-# @bot.event
-# async def on_message(message):
-#    if message.author == bot.user:
-#        return
-    # message.author.id <-- user_id
-#    res = await bot.fetch_user(message.author.id)
-#    print(res)
-#    await message.channel.send('Hello!!!!!')
-
 
 @bot.command('unmute')
 async def mute(ctx, member: discord.Member = None):
@@ -58,6 +49,14 @@ async def mute(ctx, member: discord.Member = None):
 @bot.command('muteall')
 async def muteall(ctx):
     for channel in ctx.guild.voice_channels:
-        print(channel.members)
+        for member in channel.members:
+            await member.edit(mute=True)
+
+
+@bot.command('unmuteall')
+async def muteall(ctx):
+    for channel in ctx.guild.voice_channels:
+        for member in channel.members:
+            await member.edit(mute=False)
 
 bot.run(TOKEN)
