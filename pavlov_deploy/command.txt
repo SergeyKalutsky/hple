@@ -1,0 +1,1 @@
+docker run -e CONFIG=insults_kaggle_conv_bert -p 5555:5000 -v ./my_dp_components:/root/.deeppavlov -v ./my_dp_envs:/venv deeppavlov/base-cpu
