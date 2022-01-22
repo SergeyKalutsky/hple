@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord.utils import get
 from api_token import TOKEN
 from insult_api import is_insult
-from db.db import log_message
+from db.db import log_message, select_offence_count
 
 
 intents = discord.Intents.default()
@@ -25,13 +25,18 @@ async def mute_member(channels, member, mute):
 
 @bot.event
 async def on_message(message):
-   if message.author == bot.user:
+    if message.author == bot.user:
        return
-   res = is_insult(message.content)
-   print(res)
-   if res == 'Insult':
-       log_message(message.content, message.author)
-   await message.channel.send(res)
+    res = is_insult(message.content)
+    if res == 'Insult':
+        log_message(message.content, message.author)
+        count = select_offence_count(message.author)
+        if count < 3:
+            await message.channel.send(f'''This is a warning, stop being rude, you will be baned if you be warned 3 time
+            you've been warned more then {count} times''')
+        else:
+            await message.channel.send(f'{message.author} has been baned for repeted server vaiolations')
+            await message.author.ban(reason='just for fun')
 
 
 @bot.command('unmute')
