@@ -10,4 +10,5 @@ Plan
     gives role to other channels base on the message count
 
     - greet people on going online
-    - says goodby when you go offline
+    - says goodby when you go offline 
+    abdul
