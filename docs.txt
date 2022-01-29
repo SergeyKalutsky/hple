@@ -1,3 +1,4 @@
+Adlene
 Plan
     give out warnings and bans and mute
         - baned word exact match
