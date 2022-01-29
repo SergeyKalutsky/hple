@@ -12,3 +12,4 @@ Plan
     - greet people on going online
     - says goodby when you go offline 
     abdul
+    Eduard Deak
