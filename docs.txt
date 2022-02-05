@@ -1,3 +1,13 @@
+1. FORK
+2. CLONE 
+3. MAKE changes
+4. COMMIT changes
+5. PUSH to your remote
+6. Your project version Pull Requests and create one
+7. WAIT
+
+
+
 Adlene v2.0
 Plan
     give out warnings and bans and mute
