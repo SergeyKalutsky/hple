@@ -1,4 +1,4 @@
-Adlene
+Adlene v2.0
 Plan
     give out warnings and bans and mute
         - baned word exact match
