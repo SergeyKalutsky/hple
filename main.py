@@ -17,6 +17,12 @@ async def ping(ctx):
 
 
 async def mute_member(channels, member, mute):
+    '''Mutes a member of voice channel
+    params:
+        channel
+        member Member
+        mute bool
+    '''
     for channel in channels:
         for voice_member in channel.members:
             if member == voice_member:
@@ -72,6 +78,7 @@ async def muteall(ctx):
 
 @bot.command('unmuteall')
 async def muteall(ctx):
+    '''Unmutes everyone in the chat'''
     for channel in ctx.guild.voice_channels:
         for member in channel.members:
             await member.edit(mute=False)
